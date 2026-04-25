@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="In-depth election mechanics, FAQs, and explanations of political terminology.">
+    <title>Civic Guide | Learning Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Tab System */
+        .tab-system { margin-top: 2rem; }
+        .tab-nav {
+            display: flex;
+            gap: 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .tab-trigger { 
+            background: none; border: none;
+            padding: 0.75rem 1.25rem;
+            color: var(--slate);
+            cursor: pointer; font-weight: 500;
+            transition: var(--transition);
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+            font-size: var(--fs-sm);
+        }
+        .tab-trigger.active {
+            color: var(--teal-accent);
+            border-bottom-color: var(--teal-accent);
+        }
+        .tab-content {
+            display: none;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+        .tab-content h3 { color: var(--white-bright); margin-bottom: 0.75rem; }
+        .tab-content ul { padding-left: 1.25rem; }
+        .tab-content li { margin-bottom: 0.5rem; color: var(--slate); font-size: var(--fs-sm); }
+
+        /* FAQ */
+        .faq-item {
+            margin-bottom: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .faq-trigger { 
+            width: 100%; text-align: left;
+            background: var(--bg-card); border: none; 
+            padding: 1rem 1.25rem;
+            color: var(--white-bright); cursor: pointer;
+            font-weight: 600; font-size: var(--fs-sm);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .faq-trigger span { color: var(--teal-accent); font-size: 1.2rem; }
+        .faq-content {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: var(--navy-deep);
+            padding: 0 1.25rem;
+        }
+        .faq-item.active .faq-content {
+            max-height: 300px;
+            padding: 1rem 1.25rem;
+        }
+        .faq-content p { font-size: var(--fs-sm); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div id="progress-bar"></div>
+    <nav id="main-nav">
+        <div class="container nav-container">
+            <div class="logo"><a href="index.html" style="color: var(--teal-accent); font-weight: 800; text-decoration: none; font-size: 1.1rem;">CIVIC.EDU</a></div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="registration.html">Registration</a>
+                <a href="learn.html" class="active">Learning Hub</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobile-toggle" aria-label="Toggle Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <p>03. Education</p>
+            <h1>Knowledge <span style="color: var(--teal-accent);">is Power</span>.</h1>
+            <p>Master the mechanics of democracy and clarify the complex terminology used in the political landscape.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="tab-system">
+            <h2>Election Mechanics</h2>
+            <div class="tab-nav">
+                <button class="tab-trigger active" data-tab="tab-system">The System</button>
+                <button class="tab-trigger" data-tab="tab-branches">The Branches</button>
+                <button class="tab-trigger" data-tab="tab-polling">Polling</button>
+            </div>
+            <div id="tab-system" class="tab-content active">
+                <h3>Popular Vote vs. <span class="jargon-term" data-term="electoral college">Electoral College</span></h3>
+                <p>While local elections rely on direct counts, the presidential race utilizes a unique system of electors. Understanding this distinction is vital for every citizen.</p>
+            </div>
+            <div id="tab-branches" class="tab-content">
+                <h3>The Triad of Governance</h3>
+                <ul>
+                    <li><strong>Executive:</strong> Enforcement and leadership.</li>
+                    <li><strong>Legislative:</strong> Deliberation and law-making.</li>
+                    <li><strong>Judicial:</strong> Interpretation and oversight.</li>
+                </ul>
+            </div>
+            <div id="tab-polling" class="tab-content">
+                <h3>The Polling Walkthrough</h3>
+                <p>From check-in to casting your ballot, the process is designed for security and privacy. Familiarize yourself with the steps to ensure a stress-free experience.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-trigger">What is a "Ballot"? <span>+</span></button>
+                    <div class="faq-content">
+                        <p>The official medium used to record your votes. It can be a physical paper document or a secure digital interface.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger">Do I get time off to vote? <span>+</span></button>
+                    <div class="faq-content">
+                        <p>Many jurisdictions mandate that employers provide paid or unpaid leave for civic participation. Verify your local labor laws.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger">What if I make a mistake? <span>+</span></button>
+                    <div class="faq-content">
+                        <p>You can "spoil" your ballot and request a fresh one from poll workers. Accuracy is paramount.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger">Can I vote if I'm out of state? <span>+</span></button>
+                    <div class="faq-content">
+                        <p>Yes! You can typically register at your current address or request an <span class="jargon-term" data-term="absentee ballot">absentee ballot</span> to vote from your home address.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Civic Guide</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,444 @@
+/* ====================================
+   CIVIC.EDU - Modern Civic Design System
+   Mobile-First Responsive Architecture
+   ==================================== */
+
+:root {
+    /* Color Palette */
+    --navy-deep: #0a192f;
+    --navy-light: #112240;
+    --navy-slate: #233554;
+    --slate: #8892b0;
+    --slate-light: #a8b2d1;
+    --white-bright: #e6f1ff;
+    --teal-accent: #64ffda;
+    --teal-glow: rgba(100, 255, 218, 0.1);
+    
+    /* Functional */
+    --bg-main: var(--navy-deep);
+    --bg-card: var(--navy-light);
+    --text-primary: var(--white-bright);
+    --text-secondary: var(--slate);
+    --border-color: var(--navy-slate);
+    
+    /* Glassmorphism */
+    --glass-bg: rgba(17, 34, 64, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-blur: blur(12px);
+
+    /* Fluid Typography */
+    --fs-xs: clamp(0.7rem, 0.66rem + 0.2vw, 0.8rem);
+    --fs-sm: clamp(0.8rem, 0.74rem + 0.3vw, 0.95rem);
+    --fs-base: clamp(0.9rem, 0.85rem + 0.3vw, 1.1rem);
+    --fs-md: clamp(1.1rem, 1rem + 0.5vw, 1.5rem);
+    --fs-lg: clamp(1.4rem, 1.2rem + 1vw, 2.2rem);
+    --fs-xl: clamp(1.8rem, 1.4rem + 2vw, 3.5rem);
+    
+    /* Spacing */
+    --section-gap: clamp(3rem, 6vw, 8rem);
+    --border-radius: 12px;
+    --transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    
+    scroll-behavior: smooth;
+}
+
+/* Reset */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    font-size: var(--fs-base);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--navy-deep); }
+::-webkit-scrollbar-thumb { background: var(--navy-slate); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--slate); }
+
+/* Progress Bar */
+#progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: var(--teal-accent);
+    width: 0%;
+    z-index: 2000;
+    box-shadow: 0 0 8px var(--teal-accent);
+}
+
+/* Utility */
+.hidden { display: none !important; }
+
+/* ====================================
+   LAYOUT
+   ==================================== */
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+/* ====================================
+   NAVIGATION
+   ==================================== */
+nav {
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--navy-deep);
+    transition: var(--transition);
+}
+
+nav.scrolled {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--slate-light);
+    text-decoration: none;
+    font-size: var(--fs-xs);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--teal-accent);
+    transition: var(--transition);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+    color: var(--teal-accent);
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2000;
+    padding: 4px;
+}
+
+.mobile-menu-btn span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--teal-accent);
+    transition: var(--transition);
+    transform-origin: center;
+}
+
+.mobile-menu-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
+.mobile-menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ====================================
+   HERO / HEADER
+   ==================================== */
+header {
+    padding: 3rem 0 2rem;
+    display: flex;
+    align-items: center;
+}
+
+header h1 {
+    font-size: var(--fs-xl);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    color: var(--white-bright);
+    word-break: break-word;
+}
+
+header p {
+    font-size: var(--fs-sm);
+    color: var(--slate);
+    max-width: 550px;
+}
+
+header p:first-child {
+    color: var(--teal-accent);
+    font-family: 'Courier New', monospace;
+    margin-bottom: 1rem;
+    font-size: var(--fs-xs);
+}
+
+/* ====================================
+   SECTIONS
+   ==================================== */
+section {
+    padding: var(--section-gap) 0;
+}
+
+h2 {
+    font-size: var(--fs-lg);
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.75rem;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 3px;
+    background: var(--teal-accent);
+    bottom: 0;
+    left: 0;
+    border-radius: 2px;
+}
+
+h3 { font-size: var(--fs-md); }
+h4 { font-size: var(--fs-sm); color: var(--white-bright); }
+
+p { color: var(--slate); }
+
+/* ====================================
+   TIMELINE
+   ==================================== */
+.timeline {
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--navy-slate);
+}
+
+.timeline-item {
+    margin-bottom: 2.5rem;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.timeline-item.reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -1.5rem;
+    top: 1.5rem;
+    width: 12px;
+    height: 12px;
+    background: var(--teal-accent);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(100, 255, 218, 0.4);
+    transform: translateX(-3px);
+}
+
+.timeline-content {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--glass-border);
+    transition: var(--transition);
+}
+
+.timeline-content:hover {
+    border-color: rgba(100, 255, 218, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.timeline-content h3 {
+    margin-bottom: 0.75rem;
+    color: var(--teal-accent);
+}
+
+.timeline-content p {
+    font-size: var(--fs-sm);
+    line-height: 1.7;
+}
+
+/* ====================================
+   BUTTONS
+   ==================================== */
+.action-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--teal-accent);
+    color: var(--teal-accent);
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    font-size: var(--fs-xs);
+    margin-top: 1rem;
+    transition: var(--transition);
+}
+
+.action-button:hover {
+    background: var(--teal-glow);
+}
+
+/* ====================================
+   JARGON BUSTER
+   ==================================== */
+.jargon-term {
+    color: var(--teal-accent);
+    border-bottom: 1px dashed var(--teal-accent);
+    cursor: help;
+}
+
+.jargon-popover {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--navy-light);
+    border: 1px solid var(--teal-accent);
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    z-index: 10000;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition);
+    max-width: calc(100vw - 2rem);
+    width: auto;
+    text-align: center;
+    font-size: var(--fs-sm);
+    color: var(--white-bright);
+}
+
+.jargon-popover.active {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+/* ====================================
+   FOOTER
+   ==================================== */
+footer {
+    padding: 3rem 0;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
+
+footer p {
+    color: var(--slate);
+    font-size: var(--fs-xs);
+}
+
+/* ====================================
+   MOBILE RESPONSIVE (max-width: 768px)
+   ==================================== */
+@media (max-width: 768px) {
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        max-width: 300px;
+        height: 100vh;
+        height: 100dvh;
+        background: var(--navy-light);
+        padding: 5rem 2rem 2rem;
+        transition: var(--transition);
+        box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+        z-index: 1500;
+        gap: 0;
+    }
+
+    .nav-links a {
+        padding: 1rem 0;
+        font-size: 1rem;
+        letter-spacing: 0.05em;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-links.active { right: 0; }
+    .mobile-menu-btn { display: flex; }
+
+    header {
+        padding: 2rem 0 1.5rem;
+        min-height: auto;
+    }
+
+    .timeline { padding-left: 1.25rem; }
+    .timeline::before { left: 5px; }
+    .timeline-dot { left: -1.25rem; transform: translateX(-2px); }
+
+    .timeline-content {
+        padding: 1.25rem;
+    }
+
+    .timeline-content:hover {
+        transform: none;
+    }
+
+    section { padding: clamp(2rem, 5vw, 4rem) 0; }
+}
+
+/* Small phones */
+@media (max-width: 400px) {
+    .container { padding: 0 1rem; }
+    
+    header h1 { font-size: clamp(1.5rem, 6vw, 2rem); }
+    
+    .timeline-content { padding: 1rem; }
+    .action-button { padding: 0.6rem 1rem; font-size: 0.75rem; }
+}

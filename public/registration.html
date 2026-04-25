@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive voter registration eligibility checklist for Indian citizens.">
+    <title>Civic Guide | Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+        .check-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        .check-card:hover {
+            border-color: var(--teal-accent);
+        }
+        .check-card input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            accent-color: var(--teal-accent);
+            cursor: pointer;
+            margin-top: 2px;
+        }
+        .cta-section {
+            background: var(--navy-light);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 600px) {
+            .checklist-grid { grid-template-columns: repeat(3, 1fr); }
+            .cta-section { padding: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div id="progress-bar"></div>
+    <nav id="main-nav">
+        <div class="container nav-container">
+            <div class="logo"><a href="index.html" style="color: var(--teal-accent); font-weight: 800; text-decoration: none; font-size: 1.1rem;">CIVIC.EDU</a></div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="registration.html" class="active">Registration</a>
+                <a href="learn.html">Learning Hub</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobile-toggle" aria-label="Toggle Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <p>02. Preparation</p>
+            <h1>Voter <span style="color: var(--teal-accent);">Registration</span>.</h1>
+            <p>Ensure you meet the legal requirements and have the necessary documentation before proceeding.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section>
+            <h2>Eligibility Checklist</h2>
+            <div class="checklist-grid">
+                <div class="check-card">
+                    <input type="checkbox" id="check-age" data-save="age">
+                    <div>
+                        <h4>Age Requirement</h4>
+                        <p style="font-size: 0.85rem;">I am 18 years old or will be by Election Day.</p>
+                    </div>
+                </div>
+                <div class="check-card">
+                    <input type="checkbox" id="check-citizen" data-save="citizen">
+                    <div>
+                        <h4>Citizenship</h4>
+                        <p style="font-size: 0.85rem;">I am a citizen of India.</p>
+                    </div>
+                </div>
+                <div class="check-card">
+                    <input type="checkbox" id="check-id" data-save="id">
+                    <div>
+                        <h4>Identification</h4>
+                        <p style="font-size: 0.85rem;">I possess a valid government-issued ID.</p>
+                    </div>
+                </div>
+            </div>
+            <div id="checklist-success" class="hidden" style="margin-top: 2rem; padding: 1.25rem; background: var(--teal-glow); border: 1px solid var(--teal-accent); border-radius: 8px; text-align: center; color: var(--teal-accent); font-size: var(--fs-sm);">
+                🎉 Registration requirements satisfied. You are ready to proceed.
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h3 style="color: var(--teal-accent); margin-bottom: 0.75rem;">Ready to Register?</h3>
+            <p>The official portal for voter registration in India is the ECI Voters' Service Portal. You can apply for a new Voter ID card or track your application online.</p>
+            <a href="https://voters.eci.gov.in/" target="_blank" class="action-button">Apply for Voter ID (ECI) →</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Civic Guide</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
